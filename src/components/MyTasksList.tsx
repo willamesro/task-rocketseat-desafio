@@ -73,10 +73,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
     borderRadius: 4,
     flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: "transparent",
-    
+    alignItems: 'center'
   },
   taskMarker: {
     height: 16,
@@ -84,8 +81,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#3D3D4D',
-    marginRight: 10,
-    
+    marginRight: 10
   },
   taskText: {
     color: '#3D3D4D',
@@ -96,9 +92,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     marginBottom: 4,
     borderRadius: 4,
-    backgroundColor: 'rgba(0, 121, 107, 0.1)',
-    borderWidth: 1,
-    borderColor: "#00796B",
+    backgroundColor: 'rgba(25, 61, 223, 0.1)',
     flexDirection: 'row',
     alignItems: 'center'
   },
@@ -106,7 +100,7 @@ const styles = StyleSheet.create({
     height: 16,
     width: 16,
     borderRadius: 8,
-    backgroundColor: '#00796B',
+    backgroundColor: '#273FAD',
     marginRight: 10
   },
   taskTextDone: {
