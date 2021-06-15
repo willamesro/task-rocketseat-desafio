@@ -1,10 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, SafeAreaView } from 'react-native';
 
-export function Header() {
+type ThemeProps = {
+  theme: boolean
+}
+
+export function Header({ theme }: ThemeProps) {
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
+    <SafeAreaView style={theme ? styles.dark : styles.light}>
+      <View style={[styles.header, theme ? styles.dark : styles.light]}>
         <Text style={styles.headerText}>to.</Text>
         <Text style={[styles.headerText, { fontFamily: 'Poppins-SemiBold' }]}>do</Text>
       </View>
@@ -13,12 +17,16 @@ export function Header() {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  dark: {
+    backgroundColor: '#191932',
+  },
+
+  light: {
     backgroundColor: '#273FAD',
   },
+
   header: {
     paddingBottom: 44,
-    backgroundColor: '#273FAD',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row'

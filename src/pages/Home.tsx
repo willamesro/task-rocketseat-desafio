@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native'
 
-import { Switch } from 'react-native-paper'
+import { DefaultTheme, Switch } from 'react-native-paper'
 
 import { Header } from '../components/Header';
 import { MyTasksList } from '../components/MyTasksList';
@@ -13,7 +13,14 @@ interface Task {
   title: string;
   done: boolean;
 }
-
+const toggleTheme = {
+  ...DefaultTheme,
+  roundness: 2,
+  colors: {
+    ...DefaultTheme.colors,
+    accent: '#565BFF'
+  },
+};
 export function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [theme, setTheme] = useState(false)
@@ -53,10 +60,11 @@ export function Home() {
 
   return (
     <>
-      <Header />
-      <TodoInput addTask={handleAddTask} />
+      <Header theme={theme} />
+      <TodoInput theme={theme} addTask={handleAddTask} />
 
       <Switch
+        theme={toggleTheme}
         value={theme}
         onValueChange={() => setTheme(!theme)}
         style={styles.toggleButton}
@@ -66,6 +74,7 @@ export function Home() {
         tasks={tasks}
         onPress={handleMarkTaskAsDone}
         onLongPress={handleRemoveTask}
+        theme={theme}
       />
     </>
   )

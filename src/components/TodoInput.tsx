@@ -13,9 +13,10 @@ import checkIcon from '../assets/icons/Check.png';
 
 interface TodoInputProps extends TouchableOpacityProps {
   addTask: (task: string) => void;
+  theme: boolean;
 }
-
-export function TodoInput({ addTask }: TodoInputProps) {
+let selectedTheme = false
+export function TodoInput({ addTask, theme }: TodoInputProps) {
   const [task, setTask] = useState('');
 
   function handleAddNewTask() {
@@ -25,14 +26,10 @@ export function TodoInput({ addTask }: TodoInputProps) {
   }
 
   return (
-    <View style={[
-      styles.inputContainer,
-      Platform.OS === 'ios' ?
-        styles.inputIOSShadow :
-        styles.inputAndroidShadow]}>
+    <View style={[styles.inputContainer, { backgroundColor: theme ? '#10101e' : '#F5F4F8' }, Platform.OS === 'ios' ? styles.inputIOSShadow : styles.inputAndroidShadow]}>
 
       <TextInput
-        style={styles.input}
+        style={[styles.input, theme ? styles.dark : styles.light]}
         placeholder="Adicionar novo todo..."
         placeholderTextColor={'#777'}
         returnKeyType="send"
@@ -45,7 +42,7 @@ export function TodoInput({ addTask }: TodoInputProps) {
       <TouchableOpacity
         testID="add-new-task-button"
         activeOpacity={0.7}
-        style={styles.addButton}
+        style={[styles.addButton, { backgroundColor: theme ? '#565BFF' : '#3FAD27' }]}
         onPress={handleAddNewTask}
       //TODO - onPress prop
       >
@@ -56,8 +53,17 @@ export function TodoInput({ addTask }: TodoInputProps) {
 }
 
 const styles = StyleSheet.create({
-  inputContainer: {
+  dark: {
+    backgroundColor: '#212136',
+    color: '#F5F4F8'
+  },
+
+  light: {
     backgroundColor: '#F5F4F8',
+    color: '#000'
+  },
+
+  inputContainer: {
     borderRadius: 5,
     marginTop: -25,
     marginHorizontal: 40,
@@ -67,7 +73,6 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    backgroundColor: '#F5F4F8',
     paddingLeft: 12,
     borderTopLeftRadius: 5,
     borderBottomLeftRadius: 5,
@@ -85,7 +90,6 @@ const styles = StyleSheet.create({
     elevation: 5
   },
   addButton: {
-    backgroundColor: '#3FAD27',
     height: 50,
     paddingHorizontal: 16,
     justifyContent: 'center',
